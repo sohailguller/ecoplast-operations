@@ -54,6 +54,9 @@ import Inventory from './pages/Inventory';
 import PlasticCollection from './pages/PlasticCollection';
 import Production from './pages/Production';
 import Customers from './pages/Customers';
+import NewOrder from './pages/NewOrder';
+import OrderDetail from './pages/OrderDetail';
+import Staff from './pages/Staff';
 import __Layout from './Layout.jsx';
 
 
@@ -65,6 +68,9 @@ export const PAGES = {
     "PlasticCollection": PlasticCollection,
     "Production": Production,
     "Customers": Customers,
+    "NewOrder": NewOrder,
+    "OrderDetail": OrderDetail,
+    "Staff": Staff,
 }
 
 export const pagesConfig = {
