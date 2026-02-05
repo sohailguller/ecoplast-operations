@@ -63,6 +63,22 @@ export default function StaffTaskFormSheet({ open, onOpenChange, staffMembers = 
       }
       return base44.entities.StaffTask.create(data);
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['tasks'] });
+      const previousTasks = queryClient.getQueryData(['tasks']);
+      
+      queryClient.setQueryData(['tasks'], (old = []) => {
+        if (task) {
+          return old.map(t => t.id === task.id ? { ...t, ...newData } : t);
+        }
+        return [{ ...newData, id: `temp-${Date.now()}`, created_date: new Date().toISOString() }, ...old];
+      });
+      
+      return { previousTasks };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['tasks'], context.previousTasks);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
       onOpenChange(false);

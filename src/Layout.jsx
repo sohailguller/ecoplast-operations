@@ -299,10 +299,20 @@ export default function Layout({ children, currentPageName }) {
       >
         {navigation.slice(0, 5).map((item) => {
           const isActive = currentPageName === item.page;
+          const isRootForTab = rootPages.includes(item.page);
+          
+          const handleTabClick = (e) => {
+            if (isActive && isRootForTab) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          };
+          
           return (
             <Link
               key={item.name}
               to={createPageUrl(item.page)}
+              onClick={handleTabClick}
               className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg min-w-[64px] transition-colors ${
                 isActive 
                   ? 'text-emerald-600 dark:text-emerald-400' 

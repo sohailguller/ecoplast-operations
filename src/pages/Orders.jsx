@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { format } from 'date-fns';
@@ -11,10 +11,12 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHeader from '@/components/ui/PageHeader';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
+import PullToRefresh from '@/components/ui/PullToRefresh';
 
 export default function Orders() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const queryClient = useQueryClient();
 
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ['orders'],
@@ -38,8 +40,13 @@ export default function Orders() {
     delivered: orders.filter(o => o.order_status === 'delivered').length,
   };
 
+  const handleRefresh = async () => {
+    await queryClient.invalidateQueries({ queryKey: ['orders'] });
+  };
+
   return (
-    <div className="pb-24 lg:pb-8">
+    <PullToRefresh onRefresh={handleRefresh}>
+      <div className="pb-24 lg:pb-8">
       <PageHeader 
         title="Orders"
         subtitle={`${orders.length} total orders`}
@@ -103,7 +110,7 @@ export default function Orders() {
                 key={order.id}
                 to={createPageUrl(`OrderDetail?id=${order.id}`)}
               >
-                <Card className="p-4 bg-white border-0 shadow-sm hover:shadow transition-shadow">
+                <Card className="p-4 bg-white dark:bg-gray-800 border-0 shadow-sm hover:shadow transition-shadow select-none">
                   <div className="flex items-start justify-between">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
@@ -131,6 +138,7 @@ export default function Orders() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </PullToRefresh>
   );
 }

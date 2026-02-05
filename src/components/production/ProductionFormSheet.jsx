@@ -85,6 +85,28 @@ export default function ProductionFormSheet({ open, onOpenChange, production }) 
       
       return base44.entities.Production.create(payload);
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['productions'] });
+      const previousProductions = queryClient.getQueryData(['productions']);
+      
+      queryClient.setQueryData(['productions'], (old = []) => {
+        const payload = {
+          ...newData,
+          quantity_produced: parseInt(newData.quantity_produced) || 0,
+          plastic_used_kg: parseFloat(newData.plastic_used_kg) || 0,
+        };
+        
+        if (production) {
+          return old.map(p => p.id === production.id ? { ...p, ...payload } : p);
+        }
+        return [{ ...payload, id: `temp-${Date.now()}`, created_date: new Date().toISOString() }, ...old];
+      });
+      
+      return { previousProductions };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['productions'], context.previousProductions);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['productions'] });
       queryClient.invalidateQueries({ queryKey: ['products'] });

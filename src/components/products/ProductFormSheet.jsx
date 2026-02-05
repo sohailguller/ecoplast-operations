@@ -72,6 +72,30 @@ export default function ProductFormSheet({ open, onOpenChange, product }) {
       }
       return base44.entities.Product.create(payload);
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['products'] });
+      const previousProducts = queryClient.getQueryData(['products']);
+      
+      queryClient.setQueryData(['products'], (old = []) => {
+        const payload = {
+          ...newData,
+          price: parseFloat(newData.price) || 0,
+          cost: parseFloat(newData.cost) || 0,
+          stock_quantity: parseInt(newData.stock_quantity) || 0,
+          min_stock_level: parseInt(newData.min_stock_level) || 5,
+        };
+        
+        if (product) {
+          return old.map(p => p.id === product.id ? { ...p, ...payload } : p);
+        }
+        return [...old, { ...payload, id: `temp-${Date.now()}`, created_date: new Date().toISOString() }];
+      });
+      
+      return { previousProducts };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['products'], context.previousProducts);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
       onOpenChange(false);

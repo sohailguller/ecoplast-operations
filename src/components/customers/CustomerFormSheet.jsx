@@ -55,6 +55,28 @@ export default function CustomerFormSheet({ open, onOpenChange, customer }) {
         total_plastic_sold_kg: 0,
       });
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['customers'] });
+      const previousCustomers = queryClient.getQueryData(['customers']);
+      
+      queryClient.setQueryData(['customers'], (old = []) => {
+        if (customer) {
+          return old.map(c => c.id === customer.id ? { ...c, ...newData } : c);
+        }
+        return [...old, { 
+          ...newData, 
+          plastic_balance: 0,
+          total_plastic_sold_kg: 0,
+          id: `temp-${Date.now()}`, 
+          created_date: new Date().toISOString() 
+        }];
+      });
+      
+      return { previousCustomers };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['customers'], context.previousCustomers);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['customers'] });
       onOpenChange(false);

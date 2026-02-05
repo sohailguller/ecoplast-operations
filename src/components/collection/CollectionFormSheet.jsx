@@ -102,6 +102,29 @@ export default function CollectionFormSheet({ open, onOpenChange, collection }) 
       
       return base44.entities.PlasticCollection.create(payload);
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['plasticCollections'] });
+      const previousCollections = queryClient.getQueryData(['plasticCollections']);
+      
+      queryClient.setQueryData(['plasticCollections'], (old = []) => {
+        const payload = {
+          ...newData,
+          weight_kg: parseFloat(newData.weight_kg) || 0,
+          price_per_kg: parseFloat(newData.price_per_kg) || 0,
+          total_amount: parseFloat(newData.total_amount) || 0,
+        };
+        
+        if (collection) {
+          return old.map(c => c.id === collection.id ? { ...c, ...payload } : c);
+        }
+        return [{ ...payload, id: `temp-${Date.now()}`, created_date: new Date().toISOString() }, ...old];
+      });
+      
+      return { previousCollections };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['plasticCollections'], context.previousCollections);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['plasticCollections'] });
       queryClient.invalidateQueries({ queryKey: ['customers'] });

@@ -56,6 +56,27 @@ export default function PostFormSheet({ open, onOpenChange, post }) {
       }
       return base44.entities.EducationalPost.create(payload);
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['educational-posts-admin'] });
+      const previousPosts = queryClient.getQueryData(['educational-posts-admin']);
+      
+      queryClient.setQueryData(['educational-posts-admin'], (old = []) => {
+        const payload = {
+          ...newData,
+          published_date: newData.status === 'published' ? format(new Date(), 'yyyy-MM-dd') : null,
+        };
+        
+        if (post) {
+          return old.map(p => p.id === post.id ? { ...p, ...payload } : p);
+        }
+        return [...old, { ...payload, id: `temp-${Date.now()}`, created_date: new Date().toISOString() }];
+      });
+      
+      return { previousPosts };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['educational-posts-admin'], context.previousPosts);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['educational-posts-admin'] });
       onOpenChange(false);

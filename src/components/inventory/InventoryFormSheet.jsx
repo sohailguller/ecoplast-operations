@@ -67,6 +67,34 @@ export default function InventoryFormSheet({ open, onOpenChange, item }) {
       }
       return base44.entities.Inventory.create(payload);
     },
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries({ queryKey: ['inventory'] });
+      const previousInventory = queryClient.getQueryData(['inventory']);
+      
+      queryClient.setQueryData(['inventory'], (old = []) => {
+        const quantity = parseFloat(newData.quantity) || 0;
+        const minStock = parseFloat(newData.min_stock_level) || 10;
+        
+        const payload = {
+          ...newData,
+          quantity,
+          min_stock_level: minStock,
+          cost_per_unit: parseFloat(newData.cost_per_unit) || 0,
+          status: quantity <= minStock ? (quantity === 0 ? 'out_of_stock' : 'low_stock') : 'in_stock',
+          last_restocked: new Date().toISOString().split('T')[0],
+        };
+        
+        if (item) {
+          return old.map(i => i.id === item.id ? { ...i, ...payload } : i);
+        }
+        return [...old, { ...payload, id: `temp-${Date.now()}`, created_date: new Date().toISOString() }];
+      });
+      
+      return { previousInventory };
+    },
+    onError: (err, newData, context) => {
+      queryClient.setQueryData(['inventory'], context.previousInventory);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['inventory'] });
       onOpenChange(false);
