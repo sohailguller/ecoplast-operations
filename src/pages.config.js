@@ -65,6 +65,10 @@ import PlasticEarnings from './pages/PlasticEarnings';
 import Learn from './pages/Learn';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import StaffDashboard from './pages/StaffDashboard';
+import StaffTasks from './pages/StaffTasks';
+import StaffProduction from './pages/StaffProduction';
+import StaffCollection from './pages/StaffCollection';
 import __Layout from './Layout.jsx';
 
 
@@ -87,6 +91,10 @@ export const PAGES = {
     "Learn": Learn,
     "Settings": Settings,
     "Profile": Profile,
+    "StaffDashboard": StaffDashboard,
+    "StaffTasks": StaffTasks,
+    "StaffProduction": StaffProduction,
+    "StaffCollection": StaffCollection,
 }
 
 export const pagesConfig = {
