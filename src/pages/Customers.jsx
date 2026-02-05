@@ -8,7 +8,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHeader from '@/components/ui/PageHeader';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
-import CustomerFormSheet from '@/components/customers/CustomerFormSheet';
+import CustomerFormSheet from '../components/customers/CustomerFormSheet';
 
 export default function Customers() {
   const [searchQuery, setSearchQuery] = useState('');

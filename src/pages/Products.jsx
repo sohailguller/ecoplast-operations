@@ -14,7 +14,7 @@ import {
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHeader from '@/components/ui/PageHeader';
 import EmptyState from '@/components/ui/EmptyState';
-import ProductFormSheet from '@/components/products/ProductFormSheet';
+import ProductFormSheet from '../components/products/ProductFormSheet';
 
 export default function Products() {
   const [searchQuery, setSearchQuery] = useState('');

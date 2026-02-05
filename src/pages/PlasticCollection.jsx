@@ -9,7 +9,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import StatCard from '@/components/ui/StatCard';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
-import CollectionFormSheet from '@/components/collection/CollectionFormSheet';
+import CollectionFormSheet from '../components/collection/CollectionFormSheet';
 
 export default function PlasticCollection() {
   const [searchQuery, setSearchQuery] = useState('');

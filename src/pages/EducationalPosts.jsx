@@ -15,7 +15,7 @@ import {
 import PageHeader from '@/components/ui/PageHeader';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
-import PostFormSheet from '@/components/posts/PostFormSheet';
+import PostFormSheet from '../components/posts/PostFormSheet';
 
 export default function EducationalPosts() {
   const [searchQuery, setSearchQuery] = useState('');

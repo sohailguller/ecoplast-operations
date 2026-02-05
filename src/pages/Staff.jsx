@@ -11,7 +11,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import EmptyState from '@/components/ui/EmptyState';
 import StatusBadge from '@/components/ui/StatusBadge';
-import StaffTaskFormSheet from '@/components/staff/StaffTaskFormSheet';
+import StaffTaskFormSheet from '../components/staff/StaffTaskFormSheet';
 
 export default function Staff() {
   const [searchQuery, setSearchQuery] = useState('');

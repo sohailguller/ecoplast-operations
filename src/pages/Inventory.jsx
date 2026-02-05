@@ -8,7 +8,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHeader from '@/components/ui/PageHeader';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
-import InventoryFormSheet from '@/components/inventory/InventoryFormSheet';
+import InventoryFormSheet from '../components/inventory/InventoryFormSheet';
 
 export default function Inventory() {
   const [searchQuery, setSearchQuery] = useState('');

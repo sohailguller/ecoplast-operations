@@ -9,7 +9,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import StatCard from '@/components/ui/StatCard';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
-import ProductionFormSheet from '@/components/production/ProductionFormSheet';
+import ProductionFormSheet from '../components/production/ProductionFormSheet';
 
 export default function Production() {
   const [searchQuery, setSearchQuery] = useState('');
