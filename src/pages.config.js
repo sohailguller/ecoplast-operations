@@ -61,6 +61,10 @@ import CustomerHome from './pages/CustomerHome';
 import Shop from './pages/Shop';
 import Checkout from './pages/Checkout';
 import MyOrders from './pages/MyOrders';
+import PlasticEarnings from './pages/PlasticEarnings';
+import Learn from './pages/Learn';
+import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 import __Layout from './Layout.jsx';
 
 
@@ -79,6 +83,10 @@ export const PAGES = {
     "Shop": Shop,
     "Checkout": Checkout,
     "MyOrders": MyOrders,
+    "PlasticEarnings": PlasticEarnings,
+    "Learn": Learn,
+    "Settings": Settings,
+    "Profile": Profile,
 }
 
 export const pagesConfig = {
