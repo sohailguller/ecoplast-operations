@@ -9,6 +9,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import StatusBadge from '@/components/ui/StatusBadge';
 import EmptyState from '@/components/ui/EmptyState';
 import InventoryFormSheet from '../components/inventory/InventoryFormSheet';
+import PullToRefresh from '@/components/ui/PullToRefresh';
 
 export default function Inventory() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -39,8 +40,13 @@ export default function Inventory() {
     setShowForm(true);
   };
 
+  const handleRefresh = async () => {
+    await queryClient.invalidateQueries({ queryKey: ['inventory'] });
+  };
+
   return (
-    <div className="pb-24 lg:pb-8">
+    <PullToRefresh onRefresh={handleRefresh}>
+      <div className="pb-24 lg:pb-8">
       <PageHeader 
         title="Inventory"
         subtitle={`${inventory.length} items${lowStockCount > 0 ? ` • ${lowStockCount} low stock` : ''}`}
@@ -118,7 +124,7 @@ export default function Inventory() {
               return (
                 <Card 
                   key={item.id} 
-                  className={`p-4 bg-white border-0 shadow-sm cursor-pointer hover:shadow transition-shadow ${isLowStock ? 'ring-1 ring-amber-200' : ''}`}
+                  className={`p-4 bg-white dark:bg-gray-800 border-0 shadow-sm cursor-pointer hover:shadow transition-shadow select-none ${isLowStock ? 'ring-1 ring-amber-200' : ''}`}
                   onClick={() => handleEdit(item)}
                 >
                   <div className="flex items-center justify-between">
@@ -152,6 +158,7 @@ export default function Inventory() {
         onOpenChange={setShowForm}
         item={editingItem}
       />
-    </div>
+      </div>
+    </PullToRefresh>
   );
 }
