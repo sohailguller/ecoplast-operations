@@ -69,6 +69,7 @@ import StaffDashboard from './pages/StaffDashboard';
 import StaffTasks from './pages/StaffTasks';
 import StaffProduction from './pages/StaffProduction';
 import StaffCollection from './pages/StaffCollection';
+import EducationalPosts from './pages/EducationalPosts';
 import __Layout from './Layout.jsx';
 
 
@@ -95,6 +96,7 @@ export const PAGES = {
     "StaffTasks": StaffTasks,
     "StaffProduction": StaffProduction,
     "StaffCollection": StaffCollection,
+    "EducationalPosts": EducationalPosts,
 }
 
 export const pagesConfig = {
