@@ -50,6 +50,8 @@
 import AdminDashboard from './pages/AdminDashboard';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
+import Inventory from './pages/Inventory';
+import PlasticCollection from './pages/PlasticCollection';
 import __Layout from './Layout.jsx';
 
 
@@ -57,6 +59,8 @@ export const PAGES = {
     "AdminDashboard": AdminDashboard,
     "Orders": Orders,
     "Products": Products,
+    "Inventory": Inventory,
+    "PlasticCollection": PlasticCollection,
 }
 
 export const pagesConfig = {
