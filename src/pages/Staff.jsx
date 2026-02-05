@@ -12,10 +12,12 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import EmptyState from '@/components/ui/EmptyState';
 import StatusBadge from '@/components/ui/StatusBadge';
 import StaffTaskFormSheet from '../components/staff/StaffTaskFormSheet';
+import StaffInviteSheet from '../components/staff/StaffInviteSheet';
 
 export default function Staff() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showTaskForm, setShowTaskForm] = useState(false);
+  const [showInviteForm, setShowInviteForm] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -94,7 +96,11 @@ export default function Staff() {
 
         {/* Staff List */}
         <div>
-          <SectionHeader title="Team Members" />
+          <SectionHeader 
+            title="Team Members" 
+            action="Add Staff"
+            onAction={() => setShowInviteForm(true)}
+          />
           {loadingUsers ? (
             <div className="space-y-2">
               {[1, 2, 3].map(i => (
@@ -156,6 +162,11 @@ export default function Staff() {
         open={showTaskForm}
         onOpenChange={setShowTaskForm}
         staffMembers={staffUsers}
+      />
+
+      <StaffInviteSheet 
+        open={showInviteForm}
+        onOpenChange={setShowInviteForm}
       />
     </div>
   );
