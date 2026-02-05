@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { format } from 'date-fns';
@@ -17,9 +17,11 @@ import { Card } from '@/components/ui/card';
 import StatCard from '@/components/ui/StatCard';
 import SectionHeader from '@/components/ui/SectionHeader';
 import StatusBadge from '@/components/ui/StatusBadge';
+import PullToRefresh from '@/components/ui/PullToRefresh';
 
 export default function StaffDashboard() {
   const [user, setUser] = useState(null);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     loadUser();
@@ -85,8 +87,17 @@ export default function StaffDashboard() {
     (t.status === 'pending' || t.status === 'in_progress')
   );
 
+  const handleRefresh = async () => {
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['my-tasks'] }),
+      queryClient.invalidateQueries({ queryKey: ['my-productions'] }),
+      queryClient.invalidateQueries({ queryKey: ['my-collections-staff'] }),
+    ]);
+  };
+
   return (
-    <div className="pb-24 lg:pb-8">
+    <PullToRefresh onRefresh={handleRefresh}>
+      <div className="pb-24 lg:pb-8">
       {/* Header */}
       <div className="px-4 py-6 bg-white border-b border-gray-100">
         <p className="text-sm text-gray-500">
@@ -264,6 +275,7 @@ export default function StaffDashboard() {
           </Card>
         </div>
       </div>
-    </div>
+      </div>
+    </PullToRefresh>
   );
 }

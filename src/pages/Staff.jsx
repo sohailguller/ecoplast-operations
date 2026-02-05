@@ -13,6 +13,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import StatusBadge from '@/components/ui/StatusBadge';
 import StaffTaskFormSheet from '../components/staff/StaffTaskFormSheet';
 import StaffInviteSheet from '../components/staff/StaffInviteSheet';
+import PullToRefresh from '@/components/ui/PullToRefresh';
 
 export default function Staff() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -41,8 +42,16 @@ export default function Staff() {
 
   const pendingTasks = tasks.filter(t => t.status === 'pending' || t.status === 'in_progress');
 
+  const handleRefresh = async () => {
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['users'] }),
+      queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+    ]);
+  };
+
   return (
-    <div className="pb-24 lg:pb-8">
+    <PullToRefresh onRefresh={handleRefresh}>
+      <div className="pb-24 lg:pb-8">
       <PageHeader 
         title="Staff"
         subtitle={`${staffUsers.length} team members`}
@@ -168,6 +177,7 @@ export default function Staff() {
         open={showInviteForm}
         onOpenChange={setShowInviteForm}
       />
-    </div>
+      </div>
+    </PullToRefresh>
   );
 }
