@@ -1,0 +1,53 @@
+{
+  "name": "Customer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Customer full name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number for M-Pesa and contact"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "location": {
+      "type": "string",
+      "description": "Physical address or area"
+    },
+    "customer_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "business",
+        "community_partner"
+      ],
+      "default": "individual"
+    },
+    "plastic_balance": {
+      "type": "number",
+      "default": 0,
+      "description": "Accumulated plastic earnings in KES"
+    },
+    "total_plastic_sold_kg": {
+      "type": "number",
+      "default": 0,
+      "description": "Total plastic sold in kg"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "name",
+    "phone"
+  ]
+}

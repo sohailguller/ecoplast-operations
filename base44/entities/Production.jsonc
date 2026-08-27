@@ -1,0 +1,73 @@
+{
+  "name": "Production",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Product being produced"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "quantity_produced": {
+      "type": "number"
+    },
+    "plastic_used_kg": {
+      "type": "number",
+      "description": "Plastic material used in kg"
+    },
+    "other_materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "material": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "production_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "shift": {
+      "type": "string",
+      "enum": [
+        "morning",
+        "afternoon",
+        "night"
+      ],
+      "default": "morning"
+    },
+    "staff_id": {
+      "type": "string"
+    },
+    "staff_name": {
+      "type": "string"
+    },
+    "quality_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "product_name",
+    "quantity_produced",
+    "production_date"
+  ]
+}

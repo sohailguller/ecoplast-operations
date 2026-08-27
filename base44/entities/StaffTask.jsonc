@@ -1,0 +1,65 @@
+{
+  "name": "StaffTask",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Staff email"
+    },
+    "assigned_to_name": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string",
+      "enum": [
+        "workshop",
+        "sales",
+        "delivery",
+        "collection",
+        "admin"
+      ],
+      "default": "workshop"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "assigned_to"
+  ]
+}

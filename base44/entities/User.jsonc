@@ -1,0 +1,30 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "location": {
+      "type": "string",
+      "description": "User's location or address"
+    },
+    "staff_role": {
+      "type": "string",
+      "enum": [
+        "workshop",
+        "sales",
+        "delivery",
+        "collection"
+      ],
+      "description": "Staff department/role (for staff users)"
+    },
+    "plastic_balance": {
+      "type": "number",
+      "default": 0,
+      "description": "Plastic earnings balance (for customers)"
+    }
+  },
+  "required": []
+}

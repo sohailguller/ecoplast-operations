@@ -1,0 +1,58 @@
+{
+  "name": "Inventory",
+  "type": "object",
+  "properties": {
+    "item_name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "raw_plastic",
+        "processed_plastic",
+        "chemicals",
+        "equipment",
+        "packaging",
+        "other"
+      ],
+      "default": "raw_plastic"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 0
+    },
+    "unit": {
+      "type": "string",
+      "default": "kg"
+    },
+    "min_stock_level": {
+      "type": "number",
+      "default": 10
+    },
+    "cost_per_unit": {
+      "type": "number"
+    },
+    "location": {
+      "type": "string",
+      "description": "Storage location"
+    },
+    "last_restocked": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "in_stock",
+        "low_stock",
+        "out_of_stock"
+      ],
+      "default": "in_stock"
+    }
+  },
+  "required": [
+    "item_name",
+    "category",
+    "quantity"
+  ]
+}

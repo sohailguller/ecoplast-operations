@@ -1,0 +1,65 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "furniture",
+        "construction",
+        "household",
+        "garden",
+        "other"
+      ],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in KES"
+    },
+    "cost": {
+      "type": "number",
+      "description": "Production cost in KES"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Product image URL"
+    },
+    "stock_quantity": {
+      "type": "number",
+      "default": 0,
+      "description": "Current stock level"
+    },
+    "min_stock_level": {
+      "type": "number",
+      "default": 5,
+      "description": "Minimum stock before alert"
+    },
+    "unit": {
+      "type": "string",
+      "default": "piece",
+      "description": "Unit of measurement"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "discontinued"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "name",
+    "price",
+    "category"
+  ]
+}

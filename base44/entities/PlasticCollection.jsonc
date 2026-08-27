@@ -1,0 +1,72 @@
+{
+  "name": "PlasticCollection",
+  "type": "object",
+  "properties": {
+    "supplier_id": {
+      "type": "string",
+      "description": "Customer/supplier who sold plastic"
+    },
+    "supplier_name": {
+      "type": "string"
+    },
+    "supplier_phone": {
+      "type": "string"
+    },
+    "plastic_type": {
+      "type": "string",
+      "enum": [
+        "PET",
+        "HDPE",
+        "PVC",
+        "LDPE",
+        "PP",
+        "PS",
+        "mixed"
+      ],
+      "description": "Type of plastic collected"
+    },
+    "weight_kg": {
+      "type": "number",
+      "description": "Weight in kilograms"
+    },
+    "price_per_kg": {
+      "type": "number",
+      "description": "Price paid per kg"
+    },
+    "total_amount": {
+      "type": "number",
+      "description": "Total payment"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid"
+      ],
+      "default": "pending"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "mpesa",
+        "cash",
+        "credit"
+      ],
+      "default": "mpesa"
+    },
+    "collected_by": {
+      "type": "string",
+      "description": "Staff who collected"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "supplier_name",
+    "plastic_type",
+    "weight_kg",
+    "price_per_kg",
+    "total_amount"
+  ]
+}
