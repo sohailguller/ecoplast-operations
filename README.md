@@ -1,14 +1,14 @@
 # EcoPlast Operations
 
-I was working with Futbol Más in Kenya, and they showed me around one of their side operations in Mathare. Mathare has a big trash problem (you can look it up), so what they do is pay people to bring in plastic, recycle it, and turn it into stuff like keychains and awards that get used in their football program. It's a whole loop: people get paid to clean up, the plastic gets reused, and the program gets something out of it too.
+While I was working with Fútbol Más in Kenya, they showed me a plastic recycling program they're part of in Mathare, Nairobi. Mathare doesn't get much from the city when it comes to waste collection, so a lot of that work is done by community groups themselves. This program pays people to bring in plastic, then recycles it into things like keychains and awards that go back into the football program. It cleans up the neighborhood, puts money in people's pockets and supports Fútbol Más, all in one loop.
 
-It was a bit disorganized, so I built them an app to run it properly:
+Keeping track of all of it is a lot: who brought in how much, what they were owed, what was being made, and who was ordering it. So I built an app to help them run it:
 
-- people who bring plastic in get logged by weight and type, and paid per kg (in KES)
-- staff track collection, production runs, inventory and their tasks
-- customers can shop and order the stuff they make
-- there's a Learn section with posts about why recycling matters
-- admin dashboard to see the whole thing at once
+- log plastic drop-offs by weight and type, and track payouts per kg (in KES)
+- staff dashboards for collection, production runs, inventory and tasks
+- a shop where people can order what they make
+- a Learn section with posts about recycling
+- an admin view of the whole operation
 
 React + Vite + Tailwind, backend on Base44.
 
