@@ -1,39 +1,18 @@
-**Welcome to your Base44 project** 
+# EcoPlast Operations
 
-**About**
+I was working with Futbol Más in Kenya, and they showed me around one of their side operations in Mathare. Mathare has a big trash problem (you can look it up), so what they do is pay people to bring in plastic, recycle it, and turn it into stuff like keychains and awards that get used in their football program. It's a whole loop: people get paid to clean up, the plastic gets reused, and the program gets something out of it too.
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+It was a bit disorganized, so I built them an app to run it properly:
 
-This project contains everything you need to run your app locally.
+- people who bring plastic in get logged by weight and type, and paid per kg (in KES)
+- staff track collection, production runs, inventory and their tasks
+- customers can shop and order the stuff they make
+- there's a Learn section with posts about why recycling matters
+- admin dashboard to see the whole thing at once
 
-**Edit the code in your local development environment**
-
-Any change pushed to the repo will also be reflected in the Base44 Builder.
-
-**Prerequisites:** 
-
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+React + Vite + Tailwind, backend on Base44.
 
 ```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
-
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
+npm install
+npm run dev
 ```
-
-Run the app: `npm run dev`
-
-**Publish your changes**
-
-Open [Base44.com](http://Base44.com) and click on Publish.
-
-**Docs & Support**
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
