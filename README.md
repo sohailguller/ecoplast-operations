@@ -1,6 +1,6 @@
 # EcoPlast Operations
 
-While I was working with Fútbol Más in Kenya, they showed me a plastic recycling program they're part of in Mathare, Nairobi. Mathare doesn't get much from the city when it comes to waste collection, so a lot of that work is done by community groups themselves. This program pays people to bring in plastic, then recycles it into things like keychains and awards that go back into the football program. It cleans up the neighborhood, puts money in people's pockets and supports Fútbol Más, all in one loop.
+While I was working with Fútbol Más in Mathare, an informal settlement near Nairobi, Kenya, they showed me around a plastic recycling operation they had started on the side. Mathare doesn't get much from the city when it comes to waste collection, so a lot of that work is done by community groups themselves. This program pays people to bring in plastic, then recycles it into things like keychains and awards that go back into the fútbol program. It cleans up the neighborhood, puts money in people's pockets, and supports Fútbol Más, all in one loop.
 
 Keeping track of all of it is a lot: who brought in how much, what they were owed, what was being made, and who was ordering it. So I built an app to help them run it:
 
